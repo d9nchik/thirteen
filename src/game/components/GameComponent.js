@@ -41,14 +41,19 @@ class Game extends React.Component {
             setTimeout(() => {
                 this.rollDice();
                 this.setState({message: 'Bot is rolling dice'});
-            }, 1500);
+            }, 3000);
             setTimeout(() => {
                 let botChoice = getChoice(this.state.myGame);
                 this.setState({message: `Bot decided go with coefficient ${botChoice}`});
                 this.makeChoice(botChoice)
-            }, 2000);
+            }, 5000);
         }
 
+    }
+
+    restart() {
+        this.state.myGame.fromScratch();
+        this.setState({message: 'New game started'});
     }
 
 
@@ -81,6 +86,7 @@ class Game extends React.Component {
 
                         )
                     }
+                    {this.state.myGame.isEnd() && <button onClick={() => this.restart()}>Restart</button>}
                 </div>
 
             </div>
