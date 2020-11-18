@@ -38,9 +38,7 @@ export class GameState {
     }
 
     availableCoefficients() {
-        var applicableCoefficient = [1, 2, 3, 4, -1, 1 / 2, 1 / 3, 1 / 4];
-        var total = this.firstDice + this.secondDice;
-        return [...applicableCoefficient.filter(coefficient => Number.isInteger(total * coefficient))];
+        return availableCoefficients(this.firstDice, this.secondDice);
     }
 
     fromScratch() {
@@ -51,4 +49,10 @@ export class GameState {
     isFirstTurn() {
         return !this.firstPlayer.isEnd();
     }
+}
+
+export function availableCoefficients(firstDice, secondDice) {
+    var applicableCoefficient = [1, 2, 3, 4, -1, 1 / 2, 1 / 3, 1 / 4];
+    var total = firstDice + secondDice;
+    return [...applicableCoefficient.filter(coefficient => Number.isInteger(total * coefficient))];
 }

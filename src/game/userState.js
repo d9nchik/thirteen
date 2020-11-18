@@ -15,7 +15,7 @@ export class UserState {
         return this.turnNumber === 5;
     }
 
-    makeTurn(firstDiceNumber, secondDiceNumber, coefficient = 1) {
+    makeTurn(firstDiceNumber, secondDiceNumber, coefficient) {
         if (this.isEnd()) {
             throw new Error('You have no turns');
         }
