@@ -8,29 +8,60 @@ class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {myGame: new GameState()};
-        this.state.myGame.rollDice();
         this.rollDice = this.rollDice.bind(this);
+        this.makeChoice = this.makeChoice.bind(this);
     }
 
     rollDice() {
         this.state.myGame.rollDice();
-        console.log(`${this.state.myGame.firstDice} ${this.state.myGame.secondDice}`);
         this.setState({});
 
+    }
+
+    makeChoice(choice) {
+        this.state.myGame.makeTurn(Number(choice));
+        this.setState({});
     }
 
 
     render() {
         return (
             <div>
+                <div>Your score: {this.state.myGame.firstPlayer.totalPoints}</div>
+                <div>Your winPoints: {this.state.myGame.firstPlayer.winScores}</div>
                 <div id="dices">
                     <Dice state={this.state.myGame.firstDice - 1} values={[1, 2, 3, 4, 5, 6]}/>
                     <Dice state={this.state.myGame.secondDice - 2} values={[2, 3, 4, 5, 6, 7]}/>
                 </div>
-                <button onClick={this.rollDice}>Roll dice</button>
+                {
+                    this.state.myGame.isFirstTurn() && (!this.state.myGame.isRolled ?
+                            <button onClick={this.rollDice}>Roll dice</button> :
+                            <div>
+                                <NumberList numbers={this.state.myGame.availableCoefficients()}
+                                            change={this.makeChoice}/>
+                            </div>
+                    )
+                }
+
             </div>
         );
     }
+}
+
+function ListItem(props) {
+    return (
+        <option value={props.value}>
+            {props.value}
+        </option>);
+}
+
+function NumberList(props) {
+    const numbers = props.numbers;
+    return (
+        <select onChange={event => props.change(event.target.value)}>
+            {numbers.map((number) => <ListItem key={number.toString()} value={number}/>)}
+        </select>
+    );
 }
 
 export default Game;

@@ -12,7 +12,7 @@ export class UserState {
     }
 
     isEnd() {
-        return this.totalPoints < 5;
+        return this.turnNumber === 5;
     }
 
     makeTurn(firstDiceNumber, secondDiceNumber, coefficient = 1) {
@@ -22,7 +22,7 @@ export class UserState {
         if (firstDiceNumber > 6 || firstDiceNumber < 1) {
             throw new Error('firstDice number is incorrect');
         }
-        if (secondDiceNumber > 7 || firstDiceNumber < 2) {
+        if (secondDiceNumber > 7 || secondDiceNumber < 2) {
             throw new Error('secondDiceNumber is incorrect');
         }
 
@@ -32,7 +32,7 @@ export class UserState {
             throw new Error('Coefficient breaks the rules');
         }
         var totalDiceScores = firstDiceNumber + secondDiceNumber;
-        if (Number.isInteger(totalDiceScores * coefficient)) {
+        if (!Number.isInteger(totalDiceScores * coefficient)) {
             throw new Error('Number should be in result int type');
         }
 
@@ -40,6 +40,7 @@ export class UserState {
         if (this.totalPoints % 13 === 0) {
             this.winScores += this.totalPoints / 13;
         }
+        this.turnNumber += 1;
     }
 }
 
