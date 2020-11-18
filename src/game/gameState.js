@@ -24,12 +24,17 @@ export class GameState {
             if (!this.firstPlayer.isEnd()) {
                 this.firstPlayer.makeTurn(this.firstDice, this.secondDice, coefficient);
             } else {
-                this.firstPlayer.makeTurn(this.firstDice, this.secondDice, coefficient);
+                this.secondPlayer.makeTurn(this.firstDice, this.secondDice, coefficient);
             }
         }
     }
 
     whoWon() {
         return this.firstPlayer.winScores - this.secondPlayer.winScores;
+    }
+
+    fromScratch() {
+        this.firstPlayer = new UserState()
+        this.secondPlayer = new UserState();
     }
 }
