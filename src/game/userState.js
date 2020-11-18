@@ -44,11 +44,11 @@ export class UserState {
 }
 
 export function generateThrowOfFirstDice() {
-    return generateRandomNumber(1, 6);
+    return generateRandomNumber(1, 7);
 }
 
 export function generateThrowOfSecondDice() {
-    return generateRandomNumber(2, 7);
+    return generateRandomNumber(2, 8);
 }
 
 function generateRandomNumber(fromInclusive, toExclusive) {

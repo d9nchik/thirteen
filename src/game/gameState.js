@@ -14,9 +14,9 @@ export class GameState {
     isRolled = false;
 
     rollDice() {
-        if (this.isRolled) {
-            return;
-        }
+        // if (this.isRolled) {
+        //     return;
+        // }
         this.firstDice = generateThrowOfFirstDice();
         this.secondDice = generateThrowOfSecondDice();
         this.isRolled = true;
