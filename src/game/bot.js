@@ -2,22 +2,34 @@ export function getChoice(gameState) {
     var availableCoefficients = gameState.availableCoefficients();
     var currentPoints = gameState.firstPlayer.totalPoints;
     var totalOfDices = gameState.firstDice + gameState.secondDice;
+
     var bestCoefficient = availableCoefficients[0];
-    var bestAmount = getCoefficientHeuristic(bestCoefficient, currentPoints, totalOfDices);
+    var bestTotalAmount = getTotalAmountAfter(bestCoefficient, currentPoints, totalOfDices);
+    var bestHeuristic = getCoefficientHeuristic(bestTotalAmount);
+
     for (let coefficient of availableCoefficients) {
-        let currentCoefficientAmount = getCoefficientHeuristic(coefficient, currentPoints, totalOfDices);
-        if (bestAmount < currentCoefficientAmount) {
-            bestAmount = currentCoefficientAmount;
+        let currentTotalAmount = getTotalAmountAfter(coefficient, currentPoints, totalOfDices);
+        let currentHeuristic = getCoefficientHeuristic(currentTotalAmount);
+        if (bestHeuristic < currentHeuristic) {
+            bestHeuristic = currentHeuristic;
+            bestTotalAmount = currentTotalAmount;
+            bestCoefficient = coefficient;
+        } else if (bestHeuristic === currentHeuristic && currentTotalAmount > bestTotalAmount) {
+            bestHeuristic = currentHeuristic;
+            bestTotalAmount = currentTotalAmount;
             bestCoefficient = coefficient;
         }
     }
     return bestCoefficient;
 }
 
-function getCoefficientHeuristic(coefficient, currentPoints, diceAmount) {
-    var total = currentPoints + diceAmount * coefficient;
-    if (total % 13 === 0) {
-        return total / 13;
+function getCoefficientHeuristic(totalAmountAfter) {
+    if (totalAmountAfter % 13 === 0) {
+        return totalAmountAfter / 13;
     }
     return 0;
+}
+
+function getTotalAmountAfter(coefficient, currentPoints, diceAmount) {
+    return currentPoints + diceAmount * coefficient;
 }
