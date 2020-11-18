@@ -27,21 +27,32 @@ class Game extends React.Component {
     render() {
         return (
             <div>
-                <div>Your score: {this.state.myGame.firstPlayer.totalPoints}</div>
-                <div>Your winPoints: {this.state.myGame.firstPlayer.winScores}</div>
-                <div id="dices">
+                <div className="flexible">
+                    <div>
+                        <div>Your score: {this.state.myGame.firstPlayer.totalPoints}</div>
+                        <div>Your winPoints: {this.state.myGame.firstPlayer.winScores}</div>
+                    </div>
+                    <div>
+                        <div>Bot score: {this.state.myGame.secondPlayer.totalPoints}</div>
+                        <div>Bot winPoints: {this.state.myGame.secondPlayer.winScores}</div>
+                    </div>
+                </div>
+
+                <div className="flexible">
                     <Dice state={this.state.myGame.firstDice - 1} values={[1, 2, 3, 4, 5, 6]}/>
                     <Dice state={this.state.myGame.secondDice - 2} values={[2, 3, 4, 5, 6, 7]}/>
                 </div>
-                {
-                    this.state.myGame.isFirstTurn() && (!this.state.myGame.isRolled ?
-                            <button onClick={this.rollDice}>Roll dice</button> :
-                            <div>
+                <div className="flexible">
+                    {
+                        this.state.myGame.isFirstTurn() && (!this.state.myGame.isRolled ?
+                                <button onClick={this.rollDice}>Roll dice</button> :
+
                                 <NumberList numbers={this.state.myGame.availableCoefficients()}
                                             change={this.makeChoice}/>
-                            </div>
-                    )
-                }
+
+                        )
+                    }
+                </div>
 
             </div>
         );
