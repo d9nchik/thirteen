@@ -6,3 +6,9 @@
 .centered{
     text-align: center;
 }
+
+@media (max-width: 560px) {
+    .flexible{
+        flex-direction: column;
+    }
+}

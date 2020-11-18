@@ -76,3 +76,21 @@
     background-color: rgba(0, 0, 255, 0.6);
     transform: rotateX(-90deg) translateZ(100px);
 }
+
+@media (max-width: 560px) {
+    .view {
+        width: 200px;
+        height: 200px;
+        margin: 30px;
+        perspective: 600px;
+        transform: scale(0.8);
+    }
+
+    .dice {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 1s;
+    }
+}
