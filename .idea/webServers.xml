@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="603d6720-5906-40a4-9e9c-12a93a2d1a37" name="thirten.tk" url="https://thirten.tk">
+        <fileTransfer accessType="SFTP" host="ec2-54-160-17-224.compute-1.amazonaws.com" port="22" sshConfigId="b7418cc0-0f13-40a8-ad14-dbbb6998d0dc" sshConfig="ubuntu@ec2-54-160-17-224.compute-1.amazonaws.com:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
