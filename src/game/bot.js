@@ -3,7 +3,7 @@ import {availableCoefficients} from "./gameState";
 export function getChoice(gameState) {
     var secondPlayerState = gameState.secondPlayer;
     var availableCoefficients = gameState.availableCoefficients();
-    if (secondPlayerState.turnNumber < 1) {
+    if (secondPlayerState.turnNumber < 2) {
 
         let currentPoints = secondPlayerState.totalPoints;
         let totalOfDices = gameState.firstDice + gameState.secondDice;
