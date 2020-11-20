@@ -1,17 +1,17 @@
 import {UserState, generateThrowOfFirstDice, generateThrowOfSecondDice} from "./userState";
 
 export class GameState {
-    firstPlayer = new UserState();
-    secondPlayer = new UserState();
+    constructor() {
+        this.firstPlayer = new UserState();
+        this.secondPlayer = new UserState();
+        this.isRolled = false;
+    }
+
 
     isEnd() {
         return this.firstPlayer.isEnd() && this.secondPlayer.isEnd();
     }
 
-    firstDice;
-    secondDice;
-
-    isRolled = false;
 
     rollDice() {
         if (this.isRolled) {

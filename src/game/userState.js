@@ -1,7 +1,9 @@
 export class UserState {
-    turnNumber = 0;
-    totalPoints = 0;
-    winScores = 0;
+    constructor() {
+        this.turnNumber = 0;
+        this.totalPoints = 0;
+        this.winScores = 0;
+    }
 
     copy() {
         let state = new UserState();

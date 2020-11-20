@@ -3,7 +3,7 @@ import Dice from "./Dice.js";
 import './GameComponent.css';
 import {GameState} from "../gameState";
 import {getChoice} from "../bot";
-
+import PropTypes from 'prop-types';
 
 class Game extends React.Component {
     constructor(props) {
@@ -101,6 +101,10 @@ function ListItem(props) {
         </option>);
 }
 
+ListItem.propTypes = {
+    value: PropTypes.number
+}
+
 function NumberList(props) {
     const numbers = props.numbers;
     return (
@@ -110,5 +114,11 @@ function NumberList(props) {
         </select>
     );
 }
+
+NumberList.propTypes = {
+    numbers: PropTypes.array,
+    change: PropTypes.func
+}
+
 
 export default Game;
